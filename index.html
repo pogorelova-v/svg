@@ -11,10 +11,75 @@
 
     <div class="container">         
 
+        <div class="svg-anim">
+
+            <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path id="heart" d="M19.42 2.57996C18.9183 2.07653 18.3222 1.67709 17.6658 1.40455C17.0095 1.132 16.3057 0.991699 15.595 0.991699C14.8843 0.991699 14.1806 1.132 13.5242 1.40455C12.8678 1.67709 12.2717 2.07653 11.77 2.57996L11 3.35996L10.23 2.57996C9.72835 2.07653 9.13223 1.67709 8.47585 1.40455C7.81947 1.132 7.11574 0.991699 6.40503 0.991699C5.69431 0.991699 4.99058 1.132 4.3342 1.40455C3.67783 1.67709 3.0817 2.07653 2.58003 2.57996C0.460025 4.69996 0.330025 8.27996 3.00003 11L11 19L19 11C21.67 8.27996 21.54 4.69996 19.42 2.57996Z" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"/>
+        
+                <animateTransform 
+                    additive="sum"
+                    id="rotate" 
+                    begin="click"
+                    attributeName="transform"
+                    attributeType="XML"
+                    type="rotate"
+                    values="0; -45;  360"
+                    dur="0.6s"
+                />
+                <animateTransform 
+                    additive="sum"
+                    id="scale"
+                    begin="rotate.end"
+                    attributeName="transform"
+                    attributeType="XML"
+                    type="scale"
+                    values="1; 0.5;  1"
+                    dur="0.3s"
+                />
+                <animate 
+                    additive="sum"
+                    id="red" 
+                    begin="scale.end - 0.1s"
+                    attributeName="fill"
+                    attributeType="CSS"
+                    values="#ff0000"
+                    dur="0.2s"
+                    fill="freeze" 
+                />
+                <animate 
+                    href="#heart"
+                    additive="sum"
+                    id="red" 
+                    begin="scale.end - 0.1s"
+                    attributeName="stroke"
+                    attributeType="CSS"
+                    values="#ff0000"
+                    dur="0.2s"
+                    fill="freeze" 
+                />
+    
+            </svg>               
+
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 6H17.25H3M21 18H17.25H3M21 12H6.75H3" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"/>
+                <path id="circle" d="M15.75 7.5C16.5784 7.5 17.25 6.82843 17.25 6C17.25 5.17157 16.5784 4.5 15.75 4.5C14.9216 4.5 14.25 5.17157 14.25 6C14.25 6.82843 14.9216 7.5 15.75 7.5Z" fill="#FEFEFE" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"/>
+                <path id="circle" d="M8.25 13.5C9.07843 13.5 9.75 12.8284 9.75 12C9.75 11.1716 9.07843 10.5 8.25 10.5C7.42157 10.5 6.75 11.1716 6.75 12C6.75 12.8284 7.42157 13.5 8.25 13.5Z" fill="#FEFEFE" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"/>
+                <path id="circle" d="M15.75 19.5C16.5784 19.5 17.25 18.8284 17.25 18C17.25 17.1716 16.5784 16.5 15.75 16.5C14.9216 16.5 14.25 17.1716 14.25 18C14.25 18.8284 14.9216 19.5 15.75 19.5Z" fill="#FEFEFE" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+                
+                                    
+                
+
+          </div> 
+
+
        <div class="svg-text">
             <h1>SVG animate</h1>
             <ol>
-                <li><strong>animate</strong> - используется для анимации любого атрибута svg элемента</li>
+                <li><strong>animate</strong> - используется для анимации любого атрибута svg элемента <br>
+                    <b>animateTransform</b> - по сути то же самое, но только для трансформаций<br>
+                    <b>animateMotion</b> - для движения объектов по кривым
+                </li>
                 <li><strong>href="#"</strong> - указывает целевой элемент по id (можно пропустить, тогда целью будет родительский элемент первого следующего вверх уровня от текущего элемента анимации)</li>
                 <li><strong>attributeName=""</strong> - используется для указания имени атрибута, который вы анимируете (например r- анимировать радиус окружности или d- путь рисования) </li>
                 <li><strong>attributeType=""</strong> - чтобы явно указать, к чему принадлежит анимируемый атрибут, например когда имена атрибутов в CSS и XML совпадают (может быть CSS, XML, auto, можно не указывать, по умолчанию auto)</li>
@@ -95,6 +160,7 @@
                     Сделать анимацию накопительной можно установив атрибут <b>accumulate</b> (который по умолчанию <b>none</b> ) в значение <b>sum</b> <br>
                     Стоит иметь в виду, что если использовать values или from-to, то все повторения, кроме первого, будут вести они себя как при additive="sum". <br> А еще accumulate игнорируется если задан только один to.                
                 </li>
+                <li><strong>additive</strong> - указывает запускаться вместе с предыдущими animate или переопределять их <br> <b>replace</b> по умолчанию - анимация будет переопределять базовое значение атрибута и другие анимации с более низким приоритетом; <br> <b>sum</b> - анимация будет дополнять базовое значение атрибута и другие анимации с более низким приоритетом</li>
             </ol>
             
             <h2>Пример</h2>          
@@ -118,29 +184,12 @@
         <span>restart="whenNotActive"<sup>11</sup></span>            
         <span>end="id.begin"<sup>12</sup></span>            
         <span>max="4s"<sup>13</sup></span>                  
+        <span>additive="sum"<sup>16</sup></span>                  
     /&gt;
 &lt;/svg&gt;
 
             </pre>
        </div>
-
-      <div class="svg-anim">
-
-        <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path  id="heart" d="M19.42 2.57996C18.9183 2.07653 18.3222 1.67709 17.6658 1.40455C17.0095 1.132 16.3057 0.991699 15.595 0.991699C14.8843 0.991699 14.1806 1.132 13.5242 1.40455C12.8678 1.67709 12.2717 2.07653 11.77 2.57996L11 3.35996L10.23 2.57996C9.72835 2.07653 9.13223 1.67709 8.47585 1.40455C7.81947 1.132 7.11574 0.991699 6.40503 0.991699C5.69431 0.991699 4.99058 1.132 4.3342 1.40455C3.67783 1.67709 3.0817 2.07653 2.58003 2.57996C0.460025 4.69996 0.330025 8.27996 3.00003 11L11 19L19 11C21.67 8.27996 21.54 4.69996 19.42 2.57996Z" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"/>
-    
-            <animate 
-                href="#heart" 
-                attributeType="CSS" 
-                attributeName="opacity" 
-                from="1" 
-                to="0" 
-                dur="2s" 
-                repeatCount="indefinite"  
-            />
-        </svg>
-
-      </div> 
     </div>
     
     <script src="script.js"></script>
