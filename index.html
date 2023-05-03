@@ -13,13 +13,21 @@
 
         <div class="svg-anim">
 
-            <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path id="heart" d="M19.42 2.57996C18.9183 2.07653 18.3222 1.67709 17.6658 1.40455C17.0095 1.132 16.3057 0.991699 15.595 0.991699C14.8843 0.991699 14.1806 1.132 13.5242 1.40455C12.8678 1.67709 12.2717 2.07653 11.77 2.57996L11 3.35996L10.23 2.57996C9.72835 2.07653 9.13223 1.67709 8.47585 1.40455C7.81947 1.132 7.11574 0.991699 6.40503 0.991699C5.69431 0.991699 4.99058 1.132 4.3342 1.40455C3.67783 1.67709 3.0817 2.07653 2.58003 2.57996C0.460025 4.69996 0.330025 8.27996 3.00003 11L11 19L19 11C21.67 8.27996 21.54 4.69996 19.42 2.57996Z" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"/>
+            <ul>
+                <li>Не получается поменять цвет при обратной анимации у сердечка и его обводки</li>
+                <li>Если поставить начало действия по клику, как сделать возврат в начальное состояние по второму клику</li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+
+            <svg id="heartSvg" width="70" height="70" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path id="heartPath" d="M19.42 2.57996C18.9183 2.07653 18.3222 1.67709 17.6658 1.40455C17.0095 1.132 16.3057 0.991699 15.595 0.991699C14.8843 0.991699 14.1806 1.132 13.5242 1.40455C12.8678 1.67709 12.2717 2.07653 11.77 2.57996L11 3.35996L10.23 2.57996C9.72835 2.07653 9.13223 1.67709 8.47585 1.40455C7.81947 1.132 7.11574 0.991699 6.40503 0.991699C5.69431 0.991699 4.99058 1.132 4.3342 1.40455C3.67783 1.67709 3.0817 2.07653 2.58003 2.57996C0.460025 4.69996 0.330025 8.27996 3.00003 11L11 19L19 11C21.67 8.27996 21.54 4.69996 19.42 2.57996Z" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"/>
         <!--Анимация вращения-->
                 <animateTransform 
                     additive="sum"
-                    id="rotate" 
-                    begin="click"
+                    id="heartRotate" 
+                    begin="heartSvg.mouseenter"
                     attributeName="transform"
                     type="rotate"
                     values="0; -45;  360"
@@ -28,8 +36,8 @@
         <!--По окончании вращения scale-->
                 <animateTransform 
                     additive="sum"
-                    id="scale"
-                    begin="rotate.end"
+                    id="heartScale"
+                    begin="heartRotate.end"
                     attributeName="transform"
                     type="scale"
                     values="1; 0.5;  1"
@@ -38,8 +46,7 @@
         <!--В конце вращения заливаем иконку красным-->
                 <animate 
                     additive="sum"
-                    id="red" 
-                    begin="scale.end - 0.1s"
+                    begin="heartScale.end - 0.1s"
                     attributeName="fill"
                     values="#ff0000"
                     dur="0.2s"
@@ -47,28 +54,66 @@
                 />
         <!--В конце вращения красим контур красным-->
                 <animate 
-                    href="#heart"
                     additive="sum"
-                    id="red" 
-                    begin="scale.end - 0.1s"
+                    href="#heartPath"
+                    begin="heartScale.end - 0.1s"
                     attributeName="stroke"
                     values="#ff0000"
                     dur="0.2s"
                     fill="freeze" 
-                />
-    
+                /> 
+        <!--НАЗАД Анимация вращения-->
+                    <animateTransform 
+                        additive="sum"
+                        id="heartRotateEnd" 
+                        begin="heartSvg.mouseleave"
+                        attributeName="transform"
+                        type="rotate"
+                        values="360; 405; 0"
+                        dur="0.6s"
+                    />
+        <!--НАЗАД По окончании вращения scale-->
+                    <animateTransform 
+                        additive="sum"
+                        id="heartScaleEnd"
+                        begin="heartRotateEnd.end"
+                        attributeName="transform"
+                        type="scale"
+                        values="1; 0.5;  1"
+                        dur="0.3s"
+                    />
+        <!--НАЗАД В начале вращения убираем заливку иконки-->
+                    <animate 
+                        additive="sum"
+                        begin="heartRotateEnd.begin"
+                        attributeName="fill"
+                        values="none"
+                        dur="0.2s"
+                        fill="freeze" 
+                    />
+        <!--НАЗАД В начале вращения возвращаем цвет контуру-->
+                    <animate 
+                        additive="sum"
+                        href="#heartPath"
+                        begin="heartRotateEnd.begin"
+                        attributeName="stroke"
+                        values="#303030"
+                        dur="0.2s"
+                        fill="freeze" 
+                    />
             </svg>               
 
-            <svg id="settings" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg id="settingsSvg" width="70" height="70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M21 6H17.25H3M21 18H17.25H3M21 12H6.75H3" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"/>
-                <path  id="circle1" d="M15.75 7.5C16.5784 7.5 17.25 6.82843 17.25 6C17.25 5.17157 16.5784 4.5 15.75 4.5C14.9216 4.5 14.25 5.17157 14.25 6C14.25 6.82843 14.9216 7.5 15.75 7.5Z" fill="#FEFEFE" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"/>
-                <path id="circle2" d="M8.25 13.5C9.07843 13.5 9.75 12.8284 9.75 12C9.75 11.1716 9.07843 10.5 8.25 10.5C7.42157 10.5 6.75 11.1716 6.75 12C6.75 12.8284 7.42157 13.5 8.25 13.5Z" fill="#FEFEFE" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"/>
-                <path id="circle3" d="M15.75 19.5C16.5784 19.5 17.25 18.8284 17.25 18C17.25 17.1716 16.5784 16.5 15.75 16.5C14.9216 16.5 14.25 17.1716 14.25 18C14.25 18.8284 14.9216 19.5 15.75 19.5Z" fill="#FEFEFE" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"/>
+                <path  id="settingsCircle1" d="M15.75 7.5C16.5784 7.5 17.25 6.82843 17.25 6C17.25 5.17157 16.5784 4.5 15.75 4.5C14.9216 4.5 14.25 5.17157 14.25 6C14.25 6.82843 14.9216 7.5 15.75 7.5Z" fill="#FEFEFE" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"/>
+                <path id="settingsCircle2" d="M8.25 13.5C9.07843 13.5 9.75 12.8284 9.75 12C9.75 11.1716 9.07843 10.5 8.25 10.5C7.42157 10.5 6.75 11.1716 6.75 12C6.75 12.8284 7.42157 13.5 8.25 13.5Z" fill="#FEFEFE" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"/>
+                <path id="settingsCircle3" d="M15.75 19.5C16.5784 19.5 17.25 18.8284 17.25 18C17.25 17.1716 16.5784 16.5 15.75 16.5C14.9216 16.5 14.25 17.1716 14.25 18C14.25 18.8284 14.9216 19.5 15.75 19.5Z" fill="#FEFEFE" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"/>
 
+    <!--Перемещаем шарики в противоположную сторону-->
                 <animateTransform
-                id="circleTrans"
-                    begin="settings.click"
-                    href="#circle1"
+                id="settingsCircleTrans"
+                    begin="settingsSvg.mouseenter"
+                    href="#settingsCircle1"
                     attributeName="transform"
                     type="translateX"
                     values="0; -8"
@@ -76,8 +121,8 @@
                     dur="0.3s"
                 />
                 <animateTransform
-                    begin="circleTrans.begin"
-                    href="#circle2"
+                    begin="settingsCircleTrans.begin"
+                    href="#settingsCircle2"
                     attributeName="transform"
                     type="translateX"
                     values="0; 8"
@@ -85,21 +130,142 @@
                     dur="0.3s"
                 />
                 <animateTransform
-                    begin="circleTrans.begin"
-                    href="#circle3"
+                    begin="settingsCircleTrans.begin"
+                    href="#settingsCircle3"
                     attributeName="transform"
                     type="translateX"
                     values="0; -8"
                     fill="freeze"
                     dur="0.3s"
                 />
-                
+
+    <!--И обратно -->
+                <animateTransform
+                id="settingsCircleTransEnd"
+                    begin="settingsSvg.mouseleave"
+                    href="#settingsCircle1"
+                    attributeName="transform"
+                    type="translateX"
+                    values="-8; 0"
+                    fill="freeze"
+                    dur="0.3s"
+                />
+                <animateTransform
+                    begin="settingsCircleTransEnd.begin"
+                    href="#settingsCircle2"
+                    attributeName="transform"
+                    type="translateX"
+                    values="8; 0"
+                    fill="freeze"
+                    dur="0.3s"
+                />
+                <animateTransform
+                    begin="settingsCircleTransEnd.begin"
+                    href="#settingsCircle3"
+                    attributeName="transform"
+                    type="translateX"
+                    values="-8; 0"
+                    fill="freeze"
+                    dur="0.3s"
+                />
 
             </svg>
-                
-                                    
-                
 
+            <svg id="messageSvg" width="50" height="50" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.125 1H3.875C3.17942 1.00198 2.51289 1.27918 2.02103 1.77103C1.52918 2.26289 1.25198 2.92942 1.25 3.625V12.625C1.25198 13.3206 1.52918 13.9871 2.02103 14.479C2.51289 14.9708 3.17942 15.248 3.875 15.25H5.75V19L10.1431 15.3372C10.2106 15.2808 10.2957 15.25 10.3836 15.25H18.125C18.8206 15.248 19.4871 14.9708 19.979 14.479C20.4708 13.9871 20.748 13.3206 20.75 12.625V3.625C20.748 2.92942 20.4708 2.26289 19.979 1.77103C19.4871 1.27918 18.8206 1.00198 18.125 1Z" stroke="#303030" stroke-linejoin="round"/>
+                <path id="messageSvgDot1" d="M6.5 9.625C7.32843 9.625 8 8.95343 8 8.125C8 7.29657 7.32843 6.625 6.5 6.625C5.67157 6.625 5 7.29657 5 8.125C5 8.95343 5.67157 9.625 6.5 9.625Z" fill="#303030"/>
+                <path id="messageSvgDot2" d="M11 9.625C11.8284 9.625 12.5 8.95343 12.5 8.125C12.5 7.29657 11.8284 6.625 11 6.625C10.1716 6.625 9.5 7.29657 9.5 8.125C9.5 8.95343 10.1716 9.625 11 9.625Z" fill="#303030"/>
+                <path id="messageSvgDot3" d="M15.5 9.625C16.3284 9.625 17 8.95343 17 8.125C17 7.29657 16.3284 6.625 15.5 6.625C14.6716 6.625 14 7.29657 14 8.125C14 8.95343 14.6716 9.625 15.5 9.625Z" fill="#303030"/>
+
+                <animateTransform 
+                    begin="messageSvg.mouseenter"
+                    attributeName="transform"
+                    type="scale"
+                    values="1; 1.1; 1.1;"
+                    keyTimes="0; 0.1; 1"
+                    dur="1s"
+                    fill="freeze"
+                />
+                <animateTransform 
+                    href="#messageSvgDot1"
+                    begin="messageSvg.mouseenter + 0.2s"
+                    attributeName="transform"
+                    type="scale"
+                    to="1.1"
+                    dur="0.2s"
+                />
+                <animateTransform 
+                    href="#messageSvgDot2"
+                    begin="messageSvg.mouseenter + 0.4s"
+                    attributeName="transform"
+                    type="scale"
+                    to="1.1"
+                    dur="0.2s"
+                />
+                <animateTransform 
+                    href="#messageSvgDot3"
+                    begin="messageSvg.mouseenter + 0.6s"
+                    attributeName="transform"
+                    type="scale"
+                    to="1.1"
+                    dur="0.2s"
+                />
+        <!--Возврат-->
+                <animateTransform 
+                    begin="messageSvg.mouseleave"
+                    attributeName="transform"
+                    type="scale"
+                    values="1.1; 1; 1"
+                    keyTimes="0; 0.9; 1"
+                    dur="1s"
+                    fill="freeze"
+                />
+                <animateTransform 
+                    href="#messageSvgDot1"
+                    begin="messageSvg.mouseleave + 0.6s"
+                    attributeName="transform"
+                    type="scale"
+                    to="1"
+                    dur="0.2s"
+                />
+                <animateTransform 
+                    href="#messageSvgDot2"
+                    begin="messageSvg.mouseleave + 0.4s"
+                    attributeName="transform"
+                    type="scale"
+                    to="1"
+                    dur="0.2s"
+                />
+                <animateTransform 
+                    href="#messageSvgDot3"
+                    begin="messageSvg.mouseleave + 0.2s"
+                    attributeName="transform"
+                    type="scale"
+                    to="1"
+                    dur="0.2s"
+                />
+            </svg>
+
+            
+            <svg id="burgSvg" width="60" height="50" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path id="burgSvgPaht" fill-rule="evenodd" clip-rule="evenodd" d="M0.224976 1.12498C0.224976 0.627919 0.627919 0.224976 1.12498 0.224976H16.875C17.372 0.224976 17.775 0.627919 17.775 1.12498C17.775 1.62203 17.372 2.02498 16.875 2.02498H1.12498C0.627919 2.02498 0.224976 1.62203 0.224976 1.12498ZM0.224976 5.99998C0.224976 5.50292 0.627919 5.09998 1.12498 5.09998H16.875C17.372 5.09998 17.775 5.50292 17.775 5.99998C17.775 6.49703 17.372 6.89998 16.875 6.89998H1.12498C0.627919 6.89998 0.224976 6.49703 0.224976 5.99998ZM0.224976 10.875C0.224976 10.3779 0.627919 9.97498 1.12498 9.97498H16.875C17.372 9.97498 17.775 10.3779 17.775 10.875C17.775 11.372 17.372 11.775 16.875 11.775H1.12498C0.627919 11.775 0.224976 11.372 0.224976 10.875Z" fill="#303030" />
+
+                <animate 
+                href="#burgSvgPaht"
+                begin="burgSvg.mouseenter"
+                attributeName="d"
+                attributeType="XML"                
+                values="M0.224976 1.12498C0.224976 0.627919 0.627919 0.224976 1.12498 0.224976H16.875C17.372 0.224976 17.775 0.627919 17.775 1.12498C17.775 1.62203 17.372 2.02498 16.875 2.02498H1.12498C0.627919 2.02498 0.224976 1.62203 0.224976 1.12498ZM0.224976 5.99998C0.224976 5.50292 0.627919 5.09998 1.12498 5.09998H16.875C17.372 5.09998 17.775 5.50292 17.775 5.99998C17.775 6.49703 17.372 6.89998 16.875 6.89998H1.12498C0.627919 6.89998 0.224976 6.49703 0.224976 5.99998ZM0.224976 10.875C0.224976 10.3779 0.627919 9.97498 1.12498 9.97498H16.875C17.372 9.97498 17.775 10.3779 17.775 10.875C17.775 11.372 17.372 11.775 16.875 11.775H1.12498C0.627919 11.775 0.224976 11.372 0.224976 10.875Z; 
+                M0.224976 1.12498C0.224976 0.627919 0.627919 0.224976 1.12498 0.224976H16.875C17.372 0.224976 17.775 0.627919 17.775 1.12498C17.775 1.62203 17.372 2.02498 16.875 2.02498H1.12498C0.627919 2.02498 0.224976 1.62203 0.224976 1.12498ZM0.224976 3.99998C0.224976 3.50292 0.627919 3.09998 1.12498 3.09998H16.875C17.372 3.09998 17.775 3.50292 17.775 3.99998C17.775 4.49703 17.372 4.89998 16.875 4.89998H1.12498C0.627919 4.89998 0.224976 4.49703 0.224976 3.99998ZM0.224976 6.87498C0.224976 6.37792 0.627919 5.97498 1.12498 5.97498H16.875C17.372 5.97498 17.775 6.37792 17.775 6.87498C17.775 7.37203 17.372 7.77497 16.875 7.77497H1.12498C0.627919 7.77497 0.224976 7.37203 0.224976 6.87498Z;
+                M0.224976 0.999976C0.224976 0.502919 0.627919 0.0999756 1.12498 0.0999756H16.875C17.372 0.0999756 17.775 0.502919 17.775 0.999976C17.775 1.49703 17.372 1.89998 16.875 1.89998H1.12498C0.627919 1.89998 0.224976 1.49703 0.224976 0.999976Z;
+                M0.612423 0.400562C1.04289 0.152033 1.59332 0.299521 1.84185 0.729984L9.71685 14.3699C9.96537 14.8003 9.81789 15.3508 9.38742 15.5993C8.95696 15.8478 8.40653 15.7003 8.158 15.2699L0.283 1.62998C0.0344717 1.19952 0.181959 0.64909 0.612423 0.400562Z;
+                M2.25172 0.256922C2.74696 0.214536 3.1828 0.581652 3.22518 1.0769L4.56824 16.7695C4.61062 17.2648 4.24351 17.7006 3.74826 17.743C3.25302 17.7854 2.81718 17.4183 2.77479 16.923L1.43174 1.23039C1.38935 0.735144 1.75647 0.299307 2.25172 0.256922Z"
+                dur="0.5s"
+                fill="freeze" 
+                />
+            </svg>
+                
+                
           </div> 
 
 
@@ -108,7 +274,8 @@
             <ol>
                 <li><strong>animate</strong> - используется для анимации любого атрибута svg элемента <br>
                     <b>animateTransform</b> - по сути то же самое, но только для трансформаций<br>
-                    <b>animateMotion</b> - для движения объектов по кривым
+                    <b>animateMotion</b> - для движения объектов по кривым <br>
+                    <b>set</b> - упрощенное сокращение animate,чаще всего используется со значениями, которые не поддерживают линейную интерполяцию, такими как свойство visibility, не является аддитивным (атрибуты additive и accumulate недопустимы и будут игнорироваться)
                 </li>
                 <li><strong>href="#"</strong> - указывает целевой элемент по id (можно пропустить, тогда целью будет родительский элемент первого следующего вверх уровня от текущего элемента анимации)</li>
                 <li><strong>attributeName=""</strong> - используется для указания имени атрибута, который вы анимируете (например r- анимировать радиус окружности или d- путь рисования) </li>

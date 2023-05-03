@@ -116,6 +116,9 @@ span:nth-child(99){
 
 svg{
     cursor: pointer;
-    width:70px;
-    height:70px;
+    box-sizing: border-box;
+}
+
+.svg-anim ul{
+    width: 30%;
 }
