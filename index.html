@@ -14,11 +14,8 @@
         <div class="svg-anim">
 
             <ul>
-                <li>Не получается поменять цвет при обратной анимации у сердечка и его обводки</li>
-                <li>Если поставить начало действия по клику, как сделать возврат в начальное состояние по второму клику</li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>Если поставить начало действия по клику, как сделать возврат в начальное состояние по второму клику?</li>
+                <li>Считается ли плохой практикой писать animate в конце svg и обращаться к path по id?</li>
             </ul>
 
             <svg id="heartSvg" width="70" height="70" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,40 +59,37 @@
                     dur="0.2s"
                     fill="freeze" 
                 /> 
-        <!--НАЗАД Анимация вращения-->
-                    <animateTransform 
-                        additive="sum"
-                        id="heartRotateEnd" 
-                        begin="heartSvg.mouseleave"
-                        attributeName="transform"
-                        type="rotate"
-                        values="360; 405; 0"
-                        dur="0.6s"
-                    />
-        <!--НАЗАД По окончании вращения scale-->
+        <!--НАЗАД Анимация scale-->
                     <animateTransform 
                         additive="sum"
                         id="heartScaleEnd"
-                        begin="heartRotateEnd.end"
+                        begin="heartSvg.mouseleave"
                         attributeName="transform"
                         type="scale"
                         values="1; 0.5;  1"
                         dur="0.3s"
                     />
+            <!--НАЗАД Анимация вращения-->
+                    <animateTransform 
+                        additive="sum"
+                        id="heartRotateEnd" 
+                        begin="heartScaleEnd.end"
+                        attributeName="transform"
+                        type="rotate"
+                        values="360; 0"
+                        dur="0.3s"
+                    />
         <!--НАЗАД В начале вращения убираем заливку иконки-->
                     <animate 
-                        additive="sum"
-                        begin="heartRotateEnd.begin"
+                        begin="heartRotateEnd.begin + 0.2s"
                         attributeName="fill"
-                        values="none"
-                        dur="0.2s"
+                        values="transparent"
                         fill="freeze" 
                     />
         <!--НАЗАД В начале вращения возвращаем цвет контуру-->
                     <animate 
-                        additive="sum"
                         href="#heartPath"
-                        begin="heartRotateEnd.begin"
+                        begin="heartRotateEnd.begin + 0.2s"
                         attributeName="stroke"
                         values="#303030"
                         dur="0.2s"
@@ -111,7 +105,6 @@
 
     <!--Перемещаем шарики в противоположную сторону-->
                 <animateTransform
-                id="settingsCircleTrans"
                     begin="settingsSvg.mouseenter"
                     href="#settingsCircle1"
                     attributeName="transform"
@@ -121,7 +114,7 @@
                     dur="0.3s"
                 />
                 <animateTransform
-                    begin="settingsCircleTrans.begin"
+                    begin="settingsSvg.mouseenter"
                     href="#settingsCircle2"
                     attributeName="transform"
                     type="translateX"
@@ -130,7 +123,7 @@
                     dur="0.3s"
                 />
                 <animateTransform
-                    begin="settingsCircleTrans.begin"
+                    begin="settingsSvg.mouseenter"
                     href="#settingsCircle3"
                     attributeName="transform"
                     type="translateX"
@@ -141,7 +134,6 @@
 
     <!--И обратно -->
                 <animateTransform
-                id="settingsCircleTransEnd"
                     begin="settingsSvg.mouseleave"
                     href="#settingsCircle1"
                     attributeName="transform"
@@ -151,7 +143,7 @@
                     dur="0.3s"
                 />
                 <animateTransform
-                    begin="settingsCircleTransEnd.begin"
+                    begin="settingsSvg.mouseleave"
                     href="#settingsCircle2"
                     attributeName="transform"
                     type="translateX"
@@ -160,7 +152,7 @@
                     dur="0.3s"
                 />
                 <animateTransform
-                    begin="settingsCircleTransEnd.begin"
+                    begin="settingsSvg.mouseleave"
                     href="#settingsCircle3"
                     attributeName="transform"
                     type="translateX"
@@ -171,82 +163,81 @@
 
             </svg>
 
-            <svg id="messageSvg" width="50" height="50" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg id="messageSvg" width="70" height="70" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18.125 1H3.875C3.17942 1.00198 2.51289 1.27918 2.02103 1.77103C1.52918 2.26289 1.25198 2.92942 1.25 3.625V12.625C1.25198 13.3206 1.52918 13.9871 2.02103 14.479C2.51289 14.9708 3.17942 15.248 3.875 15.25H5.75V19L10.1431 15.3372C10.2106 15.2808 10.2957 15.25 10.3836 15.25H18.125C18.8206 15.248 19.4871 14.9708 19.979 14.479C20.4708 13.9871 20.748 13.3206 20.75 12.625V3.625C20.748 2.92942 20.4708 2.26289 19.979 1.77103C19.4871 1.27918 18.8206 1.00198 18.125 1Z" stroke="#303030" stroke-linejoin="round"/>
-                <path id="messageSvgDot1" d="M6.5 9.625C7.32843 9.625 8 8.95343 8 8.125C8 7.29657 7.32843 6.625 6.5 6.625C5.67157 6.625 5 7.29657 5 8.125C5 8.95343 5.67157 9.625 6.5 9.625Z" fill="#303030"/>
-                <path id="messageSvgDot2" d="M11 9.625C11.8284 9.625 12.5 8.95343 12.5 8.125C12.5 7.29657 11.8284 6.625 11 6.625C10.1716 6.625 9.5 7.29657 9.5 8.125C9.5 8.95343 10.1716 9.625 11 9.625Z" fill="#303030"/>
-                <path id="messageSvgDot3" d="M15.5 9.625C16.3284 9.625 17 8.95343 17 8.125C17 7.29657 16.3284 6.625 15.5 6.625C14.6716 6.625 14 7.29657 14 8.125C14 8.95343 14.6716 9.625 15.5 9.625Z" fill="#303030"/>
 
-                <animateTransform 
-                    begin="messageSvg.mouseenter"
-                    attributeName="transform"
-                    type="scale"
-                    values="1; 1.1; 1.1;"
-                    keyTimes="0; 0.1; 1"
-                    dur="1s"
-                    fill="freeze"
-                />
-                <animateTransform 
-                    href="#messageSvgDot1"
-                    begin="messageSvg.mouseenter + 0.2s"
-                    attributeName="transform"
-                    type="scale"
-                    to="1.1"
-                    dur="0.2s"
-                />
-                <animateTransform 
-                    href="#messageSvgDot2"
-                    begin="messageSvg.mouseenter + 0.4s"
-                    attributeName="transform"
-                    type="scale"
-                    to="1.1"
-                    dur="0.2s"
-                />
-                <animateTransform 
-                    href="#messageSvgDot3"
-                    begin="messageSvg.mouseenter + 0.6s"
-                    attributeName="transform"
-                    type="scale"
-                    to="1.1"
-                    dur="0.2s"
-                />
-        <!--Возврат-->
-                <animateTransform 
-                    begin="messageSvg.mouseleave"
-                    attributeName="transform"
-                    type="scale"
-                    values="1.1; 1; 1"
-                    keyTimes="0; 0.9; 1"
-                    dur="1s"
-                    fill="freeze"
-                />
-                <animateTransform 
-                    href="#messageSvgDot1"
-                    begin="messageSvg.mouseleave + 0.6s"
-                    attributeName="transform"
-                    type="scale"
-                    to="1"
-                    dur="0.2s"
-                />
-                <animateTransform 
-                    href="#messageSvgDot2"
-                    begin="messageSvg.mouseleave + 0.4s"
-                    attributeName="transform"
-                    type="scale"
-                    to="1"
-                    dur="0.2s"
-                />
-                <animateTransform 
-                    href="#messageSvgDot3"
-                    begin="messageSvg.mouseleave + 0.2s"
-                    attributeName="transform"
-                    type="scale"
-                    to="1"
-                    dur="0.2s"
-                />
+                <path d="M6.5 9.625C7.32843 9.625 8 8.95343 8 8.125C8 7.29657 7.32843 6.625 6.5 6.625C5.67157 6.625 5 7.29657 5 8.125C5 8.95343 5.67157 9.625 6.5 9.625Z" fill="#303030"  transform-origin="center">
+                    <animate
+                        id="startMessageAnim"
+                        begin="messageSvg.mouseenter + 0.2s"
+                        attributeName="d"
+                        values="
+                        M6.5 9.625C7.32843 9.625 8 8.95343 8 8.125C8 7.29657 7.32843 6.625 6.5 6.625C5.67157 6.625 5 7.29657 5 8.125C5 8.95343 5.67157 9.625 6.5 9.625Z;
+                        M11 9.625C11.8284 9.625 12.5 8.95343 12.5 8.125C12.5 7.29657 11.8284 6.625 11 6.625C10.1716 6.625 9.5 7.29657 9.5 8.125C9.5 8.95343 10.1716 9.625 11 9.625Z; 
+                        M11 9.625C11.8284 9.625 12.5 8.95343 12.5 8.125C12.5 7.29657 11.8284 6.625 11 6.625C10.1716 6.625 9.5 7.29657 9.5 8.125C9.5 8.95343 10.1716 9.625 11 9.625Z; 
+                        M11 9.625C11.8284 9.625 12.5 8.95343 12.5 8.125C12.5 7.29657 11.8284 6.625 11 6.625C10.1716 6.625 9.5 7.29657 9.5 8.125C9.5 8.95343 10.1716 9.625 11 9.625Z; 
+                        M15.5 9.625C16.3284 9.625 17 8.95343 17 8.125C17 7.29657 16.3284 6.625 15.5 6.625C14.6716 6.625 14 7.29657 14 8.125C14 8.95343 14.6716 9.625 15.5 9.625Z;
+                        M15.5 9.625C16.3284 9.625 17 8.95343 17 8.125C17 7.29657 16.3284 6.625 15.5 6.625C14.6716 6.625 14 7.29657 14 8.125C14 8.95343 14.6716 9.625 15.5 9.625Z;
+                        M15.5 9.625C16.3284 9.625 17 8.95343 17 8.125C17 7.29657 16.3284 6.625 15.5 6.625C14.6716 6.625 14 7.29657 14 8.125C14 8.95343 14.6716 9.625 15.5 9.625Z;
+                        M11 9.625C11.8284 9.625 12.5 8.95343 12.5 8.125C12.5 7.29657 11.8284 6.625 11 6.625C10.1716 6.625 9.5 7.29657 9.5 8.125C9.5 8.95343 10.1716 9.625 11 9.625Z;
+                        M11 9.625C11.8284 9.625 12.5 8.95343 12.5 8.125C12.5 7.29657 11.8284 6.625 11 6.625C10.1716 6.625 9.5 7.29657 9.5 8.125C9.5 8.95343 10.1716 9.625 11 9.625Z;
+                        M11 9.625C11.8284 9.625 12.5 8.95343 12.5 8.125C12.5 7.29657 11.8284 6.625 11 6.625C10.1716 6.625 9.5 7.29657 9.5 8.125C9.5 8.95343 10.1716 9.625 11 9.625Z;
+                        M6.5 9.625C7.32843 9.625 8 8.95343 8 8.125C8 7.29657 7.32843 6.625 6.5 6.625C5.67157 6.625 5 7.29657 5 8.125C5 8.95343 5.67157 9.625 6.5 9.625Z
+                        "                      
+                        dur="1.6s"
+                    />
+                    <animateTransform
+                        begin="messageSvg.mouseenter + 0.2s"
+                        attributeName="transform"
+                        type="scale"
+                        values="1; 1.5; 1.5; 1"
+                        keyTimes="0; 0.05; 0.95; 1"
+                        fill="freeze"
+                        dur="1.6s"
+                    />
+                    <animateTransform
+                        begin="messageSvg.mouseenter + 0.2s"
+                        attributeName="transform"
+                        type="scale"
+                        values="1; 1.5; 1.5; 1"
+                        keyTimes="0; 0.05; 0.95; 1"
+                        fill="freeze"
+                        dur="1.6s"
+                    />
+                </path>
+
+                <path d="M11 9.625C11.8284 9.625 12.5 8.95343 12.5 8.125C12.5 7.29657 11.8284 6.625 11 6.625C10.1716 6.625 9.5 7.29657 9.5 8.125C9.5 8.95343 10.1716 9.625 11 9.625Z" fill="#303030">
+                    <!-- <animate
+                    begin="startMessageAnim.begin + 0.2s"
+                    attributeName="d"
+                    values="
+                    M11 9.625C11.8284 9.625 12.5 8.95343 12.5 8.125C12.5 7.29657 11.8284 6.625 11 6.625C10.1716 6.625 9.5 7.29657 9.5 8.125C9.5 8.95343 10.1716 9.625 11 9.625Z; 
+                    M6.5 9.625C7.32843 9.625 8 8.95343 8 8.125C8 7.29657 7.32843 6.625 6.5 6.625C5.67157 6.625 5 7.29657 5 8.125C5 8.95343 5.67157 9.625 6.5 9.625Z;
+                    M6.5 9.625C7.32843 9.625 8 8.95343 8 8.125C8 7.29657 7.32843 6.625 6.5 6.625C5.67157 6.625 5 7.29657 5 8.125C5 8.95343 5.67157 9.625 6.5 9.625Z;
+                    M6.5 9.625C7.32843 9.625 8 8.95343 8 8.125C8 7.29657 7.32843 6.625 6.5 6.625C5.67157 6.625 5 7.29657 5 8.125C5 8.95343 5.67157 9.625 6.5 9.625Z;
+                    M11 9.625C11.8284 9.625 12.5 8.95343 12.5 8.125C12.5 7.29657 11.8284 6.625 11 6.625C10.1716 6.625 9.5 7.29657 9.5 8.125C9.5 8.95343 10.1716 9.625 11 9.625Z
+                    "                      
+                    dur="0.8s"
+                /> -->
+                </path>
+
+                <path d="M15.5 9.625C16.3284 9.625 17 8.95343 17 8.125C17 7.29657 16.3284 6.625 15.5 6.625C14.6716 6.625 14 7.29657 14 8.125C14 8.95343 14.6716 9.625 15.5 9.625Z" fill="#303030">
+                    <!-- <animate
+                    begin="startMessageAnim.begin + 0.6s"
+                    attributeName="d"
+                    values="
+                    M15.5 9.625C16.3284 9.625 17 8.95343 17 8.125C17 7.29657 16.3284 6.625 15.5 6.625C14.6716 6.625 14 7.29657 14 8.125C14 8.95343 14.6716 9.625 15.5 9.625Z;
+                    M11 9.625C11.8284 9.625 12.5 8.95343 12.5 8.125C12.5 7.29657 11.8284 6.625 11 6.625C10.1716 6.625 9.5 7.29657 9.5 8.125C9.5 8.95343 10.1716 9.625 11 9.625Z; 
+                    M11 9.625C11.8284 9.625 12.5 8.95343 12.5 8.125C12.5 7.29657 11.8284 6.625 11 6.625C10.1716 6.625 9.5 7.29657 9.5 8.125C9.5 8.95343 10.1716 9.625 11 9.625Z; 
+                    M11 9.625C11.8284 9.625 12.5 8.95343 12.5 8.125C12.5 7.29657 11.8284 6.625 11 6.625C10.1716 6.625 9.5 7.29657 9.5 8.125C9.5 8.95343 10.1716 9.625 11 9.625Z; 
+                    M15.5 9.625C16.3284 9.625 17 8.95343 17 8.125C17 7.29657 16.3284 6.625 15.5 6.625C14.6716 6.625 14 7.29657 14 8.125C14 8.95343 14.6716 9.625 15.5 9.625Z
+                    "                      
+                    dur="0.8s"
+                /> -->
+                </path>
+
             </svg>
 
-            
             <svg id="burgSvg" width="60" height="50" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path id="burgSvgPaht" fill-rule="evenodd" clip-rule="evenodd" d="M0.224976 1.12498C0.224976 0.627919 0.627919 0.224976 1.12498 0.224976H16.875C17.372 0.224976 17.775 0.627919 17.775 1.12498C17.775 1.62203 17.372 2.02498 16.875 2.02498H1.12498C0.627919 2.02498 0.224976 1.62203 0.224976 1.12498ZM0.224976 5.99998C0.224976 5.50292 0.627919 5.09998 1.12498 5.09998H16.875C17.372 5.09998 17.775 5.50292 17.775 5.99998C17.775 6.49703 17.372 6.89998 16.875 6.89998H1.12498C0.627919 6.89998 0.224976 6.49703 0.224976 5.99998ZM0.224976 10.875C0.224976 10.3779 0.627919 9.97498 1.12498 9.97498H16.875C17.372 9.97498 17.775 10.3779 17.775 10.875C17.775 11.372 17.372 11.775 16.875 11.775H1.12498C0.627919 11.775 0.224976 11.372 0.224976 10.875Z" fill="#303030" />
 
