@@ -118,9 +118,20 @@ svg{
     cursor: pointer;
     box-sizing: border-box;
     overflow: visible;
+    margin: 10px;
 }
 
 .svg-anim ul{
     width: 30%;
 }
 
+.svg-anim-ok{
+    border: 2px solid #00b709;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+.svg-anim-not-ok{
+    border: 2px solid #b21905;
+    padding: 10px;
+}
