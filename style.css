@@ -135,3 +135,6 @@ svg{
     border: 2px solid #b21905;
     padding: 10px;
 }
+#trashSvg{
+    overflow: hidden;
+}
