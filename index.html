@@ -13,11 +13,6 @@
 
         <div class="svg-anim">
 
-            <ul>
-                <li>Если поставить начало действия по клику, как сделать возврат в начальное состояние по второму клику?</li>
-                <li>Считается ли плохой практикой писать animate в конце svg и обращаться к path по id?</li>
-            </ul>
-
             <div class="svg-anim-wrap">
                 <div class="svg-anim-ok">    
 
@@ -356,6 +351,116 @@
 
                     </svg>
 
+                    <svg id="trashSvgOpen" width="58" height="58" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                        <!--Для работы trashSvgOpen требуется задать overflow= hidden-->
+                        <style>
+                            #trashSvgOpen {
+                                overflow: hidden;
+                            }
+                        </style>
+
+                         <!--Крышка-->
+                        <path d="M1 5H19 M6 5V3C6 2 7 1 8 1H12C13 1 14 2 14 3V5" stroke="#303030" stroke-linecap="round" stroke-linejoin="round" transform-origin="100% 50%">
+                            <animateTransform
+                                id="trashSvgOpenCap"
+                                begin="trashSvgOpen.click"
+                                attributeName="transform"
+                                type="rotate"
+                                values="0; 90"
+                                fill="freeze"
+                                dur="0.4s"
+                            />
+                        </path>
+                            
+                        <!--Первый камень-->
+                        <path d="M0 -2.04098L1.14849 -4.52049L1.72273 -5.14037L3.13666 -6.28509C3.60508 -6.66432 4.32298 -6.55732 4.76343 -6.14595C5.51148 -5.44729 6.77205 -4.56327 8.61367 -3.90061C9.76215 -3.28074 8.03942 -2.04098 7.46518 -1.42111C7.00578 -0.925205 7.27376 0.0252728 7.46518 0.438524C7.08235 1.0584 6.20184 2.42213 5.74244 2.91803C5.1682 3.53791 2.29698 0.438524 1.72273 0.438524C1.26334 0.438524 0.38283 -1.21448 0 -2.04098Z" fill="#303030" transform="translate(3, -5)">
+                            <animateTransform
+                                begin="trashSvgOpenCap.begin + 0.2s"
+                                attributeName="transform"
+                                type="translate"
+                                values="3, -5; 3, 12 ;3, 9"
+                                fill="freeze"
+                                dur="0.35s"
+                            />
+                            <animateTransform
+                                begin="trashSvgOpenCap.begin + 0.6s"
+                                attributeName="transform"
+                                type="translate"
+                                values="3, 9; 3, 11; 3, 9"
+                                fill="freeze"
+                                dur="0.25s"
+                            />
+                        </path>               
+                        
+                        <!--Второй камень-->
+                        <path d="M4.60544 -2.7975L5.54086 -1.64589L5.70622 -1.21795L6.06535 0.345966C5.67169 0.38483 4.59907 0.739515 3.45785 1.84734C2.88156 2.25965 2.6878 1.12368 2.52243 0.69574C2.39014 0.353385 1.86263 0.257374 1.61541 0.252163C1.40438 -0.0824188 0.94926 -0.837171 0.816966 -1.17953C0.651599 -1.60747 2.84818 -2.2686 2.98515 -2.54868C3.09473 -2.77275 4.111 -2.80792 4.60544 -2.7975Z" fill="#303030" transform="translate(10, -5)">
+                            <animateTransform
+                                begin="trashSvgOpenCap.begin + 0.4s"
+                                attributeName="transform"
+                                type="translate"
+                                values="10, -5; 10, 7"
+                                fill="freeze"
+                                dur="0.25s"
+                            />
+                            <animateTransform
+                                begin="trashSvgOpenCap.begin + 0.6s"
+                                attributeName="transform"
+                                type="translate"
+                                values="10, 7; 10, 9; 10, 6 "
+                                fill="freeze"
+                                dur="0.25s"
+                            />
+                        </path>
+                            
+
+                        <g>
+                             <!--Бак-->
+                            <path d="M17 5V19C17 20 16 21 15 21H5C4 21 3 20 3 19V5" fill="#FEFEFE" stroke="#303030" stroke-linecap="round" stroke-linejoin="round">
+                                <animate
+                                    begin="trashSvgOpenCap.begin + 0.3s"
+                                    attributeName="d"
+                                    values=" M17 5V19C17 20 16 21 15 21H5C4 21 3 20 3 19V5;
+                                             M17 7V19C17 20 16 21 15 21H5C4 21 3 20 3 19V7;
+                                             M17 5V19C17 20 16 21 15 21H5C4 21 3 20 3 19V5"
+                                    fill="freeze"
+                                    dur="0.2s"
+                                />
+                                <animate
+                                    begin="trashSvgOpenCap.begin + 0.6s"
+                                    attributeName="d"
+                                    values=" M17 5V19C17 20 16 21 15 21H5C4 21 3 20 3 19V5;
+                                             M17 7V19C17 20 16 21 15 21H5C4 21 3 20 3 19V7;
+                                             M17 5V19C17 20 16 21 15 21H5C4 21 3 20 3 19V5"
+                                    fill="freeze"
+                                    dur="0.2s"
+                                />
+                            </path>
+                             <!--Полосы в баке-->
+                            <path d="M8 10V16 M12 10V16 M3 5H17" stroke="#303030" stroke-linecap="round" stroke-linejoin="round">                                
+                                <animate
+                                    begin="trashSvgOpenCap.begin + 0.3s"
+                                    attributeName="d"
+                                    values="M8 10V16 M12 10V16 M3 5H17;
+                                            M8 12V16 M12 12V16 M3 7H17; 
+                                            M8 10V16 M12 10V16 M3 5H17"
+                                    fill="freeze"
+                                    dur="0.2s"
+                                />
+                                <animate
+                                    begin="trashSvgOpenCap.begin + 0.6s"
+                                    attributeName="d"
+                                    values="M8 10V16 M12 10V16 M3 5H17;
+                                            M8 12V16 M12 12V16 M3 7H17; 
+                                            M8 10V16 M12 10V16 M3 5H17"
+                                    fill="freeze"
+                                    dur="0.2s"
+                                />
+                            </path>
+                        </g>
+
+                    </svg>
+
                     <svg id="starSvg" width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 
                         <g id="starSvgOpen">
@@ -542,7 +647,7 @@
 
                     </svg> 
 
-                    <svg id="starArrSvg" width="250" height="50%" viewBox="0 0 136 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg id="starArrSvg" width="350" height="50%" viewBox="0 0 136 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 
                      <g>
                         <path id="starOne" d="M11.9999 2C12.3993 2 12.7603 2.23765 12.9183 2.60447L15.3873 8.33763L21.6028 8.9141C22.0005 8.95099 22.3381 9.22097 22.4615 9.60081C22.5849 9.98066 22.4705 10.3975 22.1704 10.6611L17.4808 14.7809L18.8532 20.8703C18.9411 21.2599 18.7886 21.6644 18.4655 21.8992C18.1424 22.1339 17.7106 22.1539 17.3672 21.95L11.9999 18.763L6.63257 21.95C6.28916 22.1539 5.85734 22.1339 5.53423 21.8992C5.21111 21.6644 5.05867 21.2599 5.14648 20.8703L6.51892 14.7809L1.82931 10.6611C1.52926 10.3975 1.41482 9.98066 1.53824 9.60081C1.66166 9.22097 1.99926 8.95099 2.39695 8.9141L8.61245 8.33763L11.0814 2.60447C11.2394 2.23765 11.6005 2 11.9999 2Z" fill="#FEFEFE" stroke="#303030">
@@ -907,163 +1012,336 @@
                                 dur="0.2s"
                             />
                         </path>
+                    </g>
+                    <!-- starFiveBlack -->
+                    <g>
+                        <path id="starFiveBlack" d="M124 2C124.399 2 124.76 2.23765 124.918 2.60447L127.387 8.33763L133.603 8.9141C134 8.95099 134.338 9.22097 134.461 9.60081C134.585 9.98066 134.47 10.3975 134.17 10.6611L129.481 14.7809L130.853 20.8703C130.941 21.2599 130.789 21.6644 130.465 21.8992C130.142 22.1339 129.711 22.1539 129.367 21.95L124 18.763L118.633 21.95C118.289 22.1539 117.857 22.1339 117.534 21.8992C117.211 21.6644 117.059 21.2599 117.146 20.8703L118.519 14.7809L113.829 10.6611C113.529 10.3975 113.415 9.98066 113.538 9.60081C113.662 9.22097 113.999 8.95099 114.397 8.9141L120.612 8.33763L123.081 2.60447C123.239 2.23765 123.6 2 124 2Z" stroke="#303030" fill="#000000" transform-origin="90% 50%" >
+                            <animateTransform
+                            attributeName="transform"
+                            type="scale"
+                            values="0"
+                            fill="freeze"
+                            />
+                            <animateTransform
+                            begin="starFiveBlack.click"
+                            attributeName="transform"
+                            type="scale"
+                            values="0"
+                            fill="freeze"
+                            />
+                            <animateTransform
+                            begin="starFiveBlack.click"
+                            attributeName="transform"                            
+                            href="#starFive"
+                            type="scale"
+                            values="1"
+                            fill="freeze"
+                            />
+                            <animateTransform
+                                id="starSvgFiveAnim"
+                                begin="starFive.click"
+                                attributeName="transform"
+                                type="scale"
+                                values="1; 0.8; 1"
+                                fill="freeze"
+                                dur="0.5s"
+                            />
+                            <animateTransform
+                            begin="starFive.click"
+                            attributeName="transform"
+                            href="#starFive"
+                            type="scale"
+                            values="0"
+                            fill="freeze"
+                        />
+                        </path>
+                    </g>
+                    <g>
+                        
+                        <path d="M21.6465 4.64648L23 4
+                                 M4 4.64648L3 4
+                                 M4 22L3 23
+                                 M22 22L23 23
+                                 M13 22L13 23
+                                 M19 2L17.9999 2.88094
+                                 M7 2L7.67975 2.88094
+                                 M3 8L2 7.99996
+                                 M3 19L2 19
+                                 M23 19L21.9999 18.9999
+                                 M23 8L21.9999 7.99992" stroke="black" stroke-linecap="round" opacity="0" transform-origin="50% 50%">
+                            <animate
+                                 begin="starSvgFiveAnim.begin + 0.25s"
+                                 attributeName="opacity"
+                                 values="0; 1"
+                                 fill="freeze"
+                                 dur="0.2s"
+                             />
+                            <animate
+                                 begin="starSvgFiveAnim.begin + 0.5s"
+                                 attributeName="d"
+                                 values="
+                                 M21.6465 4.64648L23 4
+                                 M4 4.64648L3 4
+                                 M4 22L3 23
+                                 M22 22L23 23
+                                 M13 22L13 23
+                                 M19 2L17.9999 2.88094
+                                 M7 2L7.67975 2.88094
+                                 M3 8L2 7.99996
+                                 M3 19L2 19
+                                 M23 19L21.9999 18.9999
+                                 M23 8L21.9999 7.99992;
 
-                        <g id="starFiveBlack">
-                            <path d="M124 2C124.399 2 124.76 2.23765 124.918 2.60447L127.387 8.33763L133.603 8.9141C134 8.95099 134.338 9.22097 134.461 9.60081C134.585 9.98066 134.47 10.3975 134.17 10.6611L129.481 14.7809L130.853 20.8703C130.941 21.2599 130.789 21.6644 130.465 21.8992C130.142 22.1339 129.711 22.1539 129.367 21.95L124 18.763L118.633 21.95C118.289 22.1539 117.857 22.1339 117.534 21.8992C117.211 21.6644 117.059 21.2599 117.146 20.8703L118.519 14.7809L113.829 10.6611C113.529 10.3975 113.415 9.98066 113.538 9.60081C113.662 9.22097 113.999 8.95099 114.397 8.9141L120.612 8.33763L123.081 2.60447C123.239 2.23765 123.6 2 124 2Z" stroke="#303030" fill="#ffffff" transform-origin="50% 50%" >
-                                <animateTransform
+                                 M21.6465 4.64648L23.6465 2.64648
+                                 M4 4.64648L2 2.64648
+                                 M4 22L2 24
+                                 M22 22L24 24
+                                 M13 22L13 24
+                                 M18.6797 1L17.9999 2.88094
+                                 M7 1L7.67975 2.88094
+                                 M3 8L0.999942 7.99992
+                                 M3 19L0.999942 18.9999
+                                 M24 19L21.9999 18.9999
+                                 M24 8L21.9999 7.99992;
+
+                                 M23.6465 4.64648L25.6465 2.64648
+                                 M4 4.64648L2 2.64648
+                                 M4 24L2 26
+                                 M24 24L26 26
+                                 M14 24L14 26
+                                 M19.6797 1L18.9999 2.88094
+                                 M8 1L8.67975 2.88094
+                                 M3 9L0.999942 8.99992
+                                 M3 20L0.999942 19.9999
+                                 M26 20L23.9999 19.9999
+                                 M26 9L23.9999 8.99992;
+
+                                 M25.6465 4.64648L27.6465 2.64648
+                                 M4 4.64648L2 2.64648
+                                 M4 26L2 28
+                                 M26 26L28 28
+                                 M15 26L15 28
+                                 M21.6797 1L20.9999 2.88094
+                                 M9 1L9.67975 2.88094
+                                 M3 10L0.999942 9.99992
+                                 M3 21L0.999942 20.9999
+                                 M28 21L25.9999 20.9999
+                                 M28 10L25.9999 9.99992;
+                                 
+                                 M27 3L27.6465 2.64648
+                                 M3 4L2 2.64648
+                                 M3 27L2 28
+                                 M27 27L28 28
+                                 M15 27L15 28
+                                 M21.6797 1L21 2
+                                 M9 1V2
+                                 M2 10L0.999942 9.99992
+                                 M2 21L0.999942 20.9999
+                                 M28 21L27 21 
+                                 M28 10L27 9.99996 "
+                                 fill="freeze"
+                                 dur="0.3s"
+                             />
+                             <animateTransform
+                                begin="starSvgFiveAnim.begin + 0.5s"
                                 attributeName="transform"
-                                type="scale"
-                                values="0"
+                                type="translate"
+                                values="0 0; 0 0; -1 -1; -2 -2; -2 -2"
                                 fill="freeze"
-                                />
-                                <animateTransform
-                                begin="starFiveBlack.click"
+                                dur="0.3s"
+                            />
+                            <animate
+                                 begin="starSvgFiveAnim.begin + 0.8s"
+                                 attributeName="opacity"
+                                 values="1; 0"
+                                 fill="freeze"
+                                 dur="0.1s"
+                            />
+                            <animate
+                                begin="starSvgFiveAnim.begin + 0.9s"
+                                attributeName="d"
+                                to="M21.6465 4.64648L23 4 M4 4.64648L3 4 M4 22L3 23 M22 22L23 23 M13 22L13 23 M19 2L17.9999 2.88094 M7 2L7.67975 2.88094 M3 8L2 7.99996 M3 19L2 19 M23  19L21.9999 18.9999 M23 8L21.9999 7.99992;"
+                                fill="freeze"
+                                dur="0.1s"
+                            />
+                            <animateTransform
+                                begin="starSvgFiveAnim.begin + 0.9s"
                                 attributeName="transform"
-                                type="scale"
-                                values="0"
+                                type="translate"
+                                values="0 0;"
                                 fill="freeze"
-                                />
-                                <animateTransform
-                                    id="starSvgFiveAnim"
-                                    begin="starFive.click"
-                                    attributeName="transform"
-                                    type="scale"
-                                    values="1; 0.8; 1"
-                                    fill="freeze"
-                                    dur="0.5s"
-                                />
-                                <animate
-                                    begin="starSvgFiveAnim.begin + 0.4s"
-                                    attributeName="fill"
-                                    values="#ffffff; #000000"
-                                    fill="freeze"
-                                    dur="0.2s"
-                                />
-                            </path>
-    
-                            <path d="M21.6465 4.64648L23 4
-                                     M4 4.64648L3 4
-                                     M4 22L3 23
-                                     M22 22L23 23
-                                     M13 22L13 23
-                                     M19 2L17.9999 2.88094
-                                     M7 2L7.67975 2.88094
-                                     M3 8L2 7.99996
-                                     M3 19L2 19
-                                     M23 19L21.9999 18.9999
-                                     M23 8L21.9999 7.99992" stroke="black" stroke-linecap="round" opacity="0" transform-origin="50% 50%">
-                                <animate
-                                     begin="starSvgFiveAnim.begin + 0.25s"
-                                     attributeName="opacity"
-                                     values="0; 1"
-                                     fill="freeze"
-                                     dur="0.2s"
-                                 />
-                                <animate
-                                     begin="starSvgFiveAnim.begin + 0.5s"
-                                     attributeName="d"
-                                     values="
-                                     M21.6465 4.64648L23 4
-                                     M4 4.64648L3 4
-                                     M4 22L3 23
-                                     M22 22L23 23
-                                     M13 22L13 23
-                                     M19 2L17.9999 2.88094
-                                     M7 2L7.67975 2.88094
-                                     M3 8L2 7.99996
-                                     M3 19L2 19
-                                     M23 19L21.9999 18.9999
-                                     M23 8L21.9999 7.99992;
-    
-                                     M21.6465 4.64648L23.6465 2.64648
-                                     M4 4.64648L2 2.64648
-                                     M4 22L2 24
-                                     M22 22L24 24
-                                     M13 22L13 24
-                                     M18.6797 1L17.9999 2.88094
-                                     M7 1L7.67975 2.88094
-                                     M3 8L0.999942 7.99992
-                                     M3 19L0.999942 18.9999
-                                     M24 19L21.9999 18.9999
-                                     M24 8L21.9999 7.99992;
-    
-                                     M23.6465 4.64648L25.6465 2.64648
-                                     M4 4.64648L2 2.64648
-                                     M4 24L2 26
-                                     M24 24L26 26
-                                     M14 24L14 26
-                                     M19.6797 1L18.9999 2.88094
-                                     M8 1L8.67975 2.88094
-                                     M3 9L0.999942 8.99992
-                                     M3 20L0.999942 19.9999
-                                     M26 20L23.9999 19.9999
-                                     M26 9L23.9999 8.99992;
-    
-                                     M25.6465 4.64648L27.6465 2.64648
-                                     M4 4.64648L2 2.64648
-                                     M4 26L2 28
-                                     M26 26L28 28
-                                     M15 26L15 28
-                                     M21.6797 1L20.9999 2.88094
-                                     M9 1L9.67975 2.88094
-                                     M3 10L0.999942 9.99992
-                                     M3 21L0.999942 20.9999
-                                     M28 21L25.9999 20.9999
-                                     M28 10L25.9999 9.99992;
-                                     
-                                     M27 3L27.6465 2.64648
-                                     M3 4L2 2.64648
-                                     M3 27L2 28
-                                     M27 27L28 28
-                                     M15 27L15 28
-                                     M21.6797 1L21 2
-                                     M9 1V2
-                                     M2 10L0.999942 9.99992
-                                     M2 21L0.999942 20.9999
-                                     M28 21L27 21 
-                                     M28 10L27 9.99996 "
-                                     fill="freeze"
-                                     dur="0.3s"
-                                 />
-                                 <animateTransform
-                                    begin="starSvgFiveAnim.begin + 0.5s"
-                                    attributeName="transform"
-                                    type="translate"
-                                    values="0 0; 0 0; -1 -1; -2 -2; -2 -2"
-                                    fill="freeze"
-                                    dur="0.3s"
-                                />
-                                <animate
-                                     begin="starSvgFiveAnim.begin + 0.8s"
-                                     attributeName="opacity"
-                                     values="1; 0"
-                                     fill="freeze"
-                                     dur="0.1s"
-                                />
-                                <animate
-                                    begin="starSvgFiveAnim.begin + 0.9s"
-                                    attributeName="d"
-                                    to="M21.6465 4.64648L23 4 M4 4.64648L3 4 M4 22L3 23 M22 22L23 23 M13 22L13 23 M19 2L17.9999 2.88094 M7 2L7.67975 2.88094 M3 8L2 7.99996 M3 19L2 19 M23  19L21.9999 18.9999 M23 8L21.9999 7.99992;"
-                                    fill="freeze"
-                                    dur="0.1s"
-                                />
-                                <animateTransform
-                                    begin="starSvgFiveAnim.begin + 0.9s"
-                                    attributeName="transform"
-                                    type="translate"
-                                    values="0 0;"
-                                    fill="freeze"
-                                    dur="0.1s"
-                                />
-                            </path>
-                        </g>
+                                dur="0.1s"
+                            />
+                        </path>
+                        
+                        <animateTransform
+                        begin="starFive.click"
+                        attributeName="transform"
+                        type="translate"
+                        values="112 0;"
+                        fill="freeze"
+                        />
                     </g>
 
                     </svg>
+
+                    
                         
+                    <svg class="handbellSvg" width="70" height="70" viewBox="0 0 18 22" fill="transparent" xmlns="http://www.w3.org/2000/svg">
+                             <g id="handbellSvgBell" transform-origin="50% 50%">
+                            <path d="M17.0477 15.4733C15.844 14 14.9941 13.25 14.9941 9.18828C14.9941 5.46875 13.0948 4.14359 11.5315 3.5C11.3238 3.41469 11.1284 3.21875 11.0651 3.00547C10.7909 2.07219 10.0221 1.25 9.00023 1.25C7.97836 1.25 7.20914 2.07266 6.93773 3.00641C6.87445 3.22203 6.67898 3.41469 6.47133 3.5C4.90617 4.14453 3.00867 5.465 3.00867 9.18828C3.00633 13.25 2.15648 14 0.952732 15.4733C0.453982 16.0836 0.890857 17 1.7632 17H16.242C17.1096 17 17.5437 16.0808 17.0477 15.4733Z" stroke="#303030" stroke-linecap="round" stroke-linejoin="round" transform-origin="50% 50%">
+                            </path>
+                            <path d="M12 17V17.75C12 18.5456 11.6839 19.3087 11.1213 19.8713C10.5587 20.4339 9.79565 20.75 9 20.75C8.20435 20.75 7.44129 20.4339 6.87868 19.8713C6.31607 19.3087 6 18.5456 6 17.75V17" stroke="#303030" stroke-linecap="round" stroke-linejoin="round" transform-origin="50% 50%">
+                            </path>
+                            <animateTransform
+                                begin="handbellSvgBell.click"
+                                attributeName="transform"
+                                type="rotate"
+                                values="0; 4;"
+                                fill="freeze"
+                                dur="0.3s"
+                            />
+                            <animateTransform
+                                begin="handbellSvgBell.click + 0.3s"
+                                attributeName="transform"
+                                type="rotate"
+                                values="4; -12.4;"
+                                fill="freeze"
+                                dur="0.3s"
+                            />
+                            <animateTransform
+                                begin="handbellSvgBell.click  + 0.6s"
+                                attributeName="transform"
+                                type="rotate"
+                                values="-12.4; 12.4;"
+                                fill="freeze"
+                                dur="0.3s"
+                            />
+                            <animateTransform
+                                begin="handbellSvgBell.click  + 0.9s"
+                                attributeName="transform"
+                                type="rotate"
+                                values="12.4; -4;"
+                                fill="freeze"
+                                dur="0.3s"
+                            />
+                            <animateTransform
+                                begin="handbellSvgBell.click  + 1.2s"
+                                attributeName="transform"
+                                type="rotate"
+                                values="-4; 0;"
+                                fill="freeze"
+                                dur="0.3s"
+                            />
+                        </g>
+                    </svg>
+                        
+          
+
+                    <svg class="handbellSvg" width="70" height="70" viewBox="0 0 18 22" fill="transparent" xmlns="http://www.w3.org/2000/svg">
+                        <g  id="handbellSvgCross">
+                            <path d="M3.5 5.5L1 3" stroke="#303030" stroke-miterlimit="10" stroke-linecap="round">
+                                <animate
+                                    attributeName="opacity"
+                                    values="0"
+                                    fill="freeze"
+                                />
+                                <animate
+                                    begin="handbellSvgCross.click"
+                                    attributeName="opacity"
+                                    values="0; 1"
+                                    fill="freeze"
+                                    dur="0.2s"
+                                />
+                                <animate
+                                    begin="handbellSvgCross.click + 0.2s"
+                                    attributeName="d"
+                                    values="M3.5 5.5L1 3; M18 20L1 3;"
+                                    fill="freeze"
+                                    dur="0.3s"
+                                />
+                            </path>
+                            <path d="M17.0477 15.4733C15.844 14 14.9941 13.25 14.9941 9.18828C14.9941 5.46875 13.0948 4.14359 11.5315 3.5C11.3238 3.41469 11.1284 3.21875 11.0651 3.00547C10.7909 2.07219 10.0221 1.25 9.00023 1.25C7.97836 1.25 7.20914 2.07266 6.93773 3.00641C6.87445 3.22203 6.67898 3.41469 6.47133 3.5C4.90617 4.14453 3.00867 5.465 3.00867 9.18828C3.00633 13.25 2.15648 14 0.952732 15.4733C0.453982 16.0836 0.890857 17 1.7632 17H16.242C17.1096 17 17.5437 16.0808 17.0477 15.4733Z" stroke="#303030" stroke-linecap="round" stroke-linejoin="round">
+                                <animate
+                                    begin="handbellSvgCross.click + 0.15s"
+                                    attributeName="opacity"
+                                    values="1; 0"
+                                    fill="freeze"
+                                    dur="0.15s"
+                                />
+                            </path>
+                            <path d="M5.62687 3.91215C5.91055 3.7476 6.19608 3.61335 6.47133 3.5C6.67898 3.41469 6.87445 3.22203 6.93773 3.00641C7.20914 2.07266 7.97836 1.25 9.00023 1.25C10.0221 1.25 10.7909 2.07219 11.0651 3.00547C11.1284 3.21875 11.3238 3.41469 11.5315 3.5C13.0948 4.14359 14.9941 5.46875 14.9941 9.18828C14.9941 13.25 15.844 14 17.0477 15.4733C17.5437 16.0808 17.1096 17 16.242 17H1.7632C0.890857 17 0.453982 16.0836 0.952732 15.4733C2.15648 14 3.00633 13.25 3.00867 9.18828C3.00867 7.83624 3.25888 6.80104 3.65254 6" stroke="#303030" stroke-linecap="round" stroke-linejoin="round">
+                                <animate
+                                    begin="handbellSvgCross.click + 0.35s"
+                                    attributeName="opacity"
+                                    values="1; 0"
+                                    fill="freeze"
+                                    dur="0.15s"
+                                />
+                            </path>
+                            <path d="M3.49982 6C2.99982 7 3.00641 8.98172 3.00641 9.18828C3.00641 13.25 2.1561 14 0.952815 15.4733C0.454065 16.0836 0.890471 17 1.76328 17H14.9998M16.4295 14.7172C15.5633 13.618 14.9942 12.5117 14.9942 9.18594C14.9942 5.46875 13.0948 4.14359 11.5311 3.5C11.3234 3.41469 11.128 3.21875 11.0647 3.00547C10.7909 2.07219 10.0227 1.25 8.99985 1.25C7.97703 1.25 7.20922 2.07266 6.93735 3.00641C6.87407 3.22203 6.6786 3.41469 6.4686 3.5C6.17846 3.61833 5.89657 3.75599 5.62485 3.91203" stroke="#303030" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                            <path d="M12 17V17.75C12 18.5456 11.6839 19.3087 11.1213 19.8713C10.5587 20.4339 9.79565 20.75 9 20.75C8.20435 20.75 7.44129 20.4339 6.87868 19.8713C6.31607 19.3087 6 18.5456 6 17.75V17" stroke="#303030" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>         
+                        
+                    </svg>
+
+                    <svg id="scrollUpSvg" width="180" height="180" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle id="scrollUpSvgCircle" cx="17" cy="17" r="16.75" fill="white" stroke="#C2CFE0" stroke-width="0.5"/>
+                        <path d="M16.5 11L23.5 17.5" stroke="#3A3E41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" transform-origin="50% 50%">
+                            <animateTransform
+                                begin="scrollUpSvg.click"
+                                attributeName="transform"
+                                type="translate"
+                                values="0 0; 0 -3; 0 -3; 0 -1; 0 -1; 0 0"
+                                fill="freeze"
+                                dur="0.7s"
+                            />
+                        </path>
+                        <path d="M16.5 11L10 17.5" stroke="#3A3E41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <animateTransform
+                                begin="scrollUpSvg.click"
+                                attributeName="transform"
+                                type="translate"
+                                values="0 0; 0 -3; 0 -3; 0 -1; 0 -1; 0 0"
+                                fill="freeze"
+                                dur="0.7s"
+                            />
+                        </path>
+                        <path d="M16.5 16L23.5 22.5" stroke="#3A3E41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <animateTransform
+                                begin="scrollUpSvg.click + 0.3s"
+                                attributeName="transform"
+                                type="translate"
+                                values="0 0; 0 -2.5; 0 -2.5; 0 0"
+                                fill="freeze"
+                                dur="0.7s"
+                            />
+                        </path>
+                        <path d="M16.5 16L10 22.5" stroke="#3A3E41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <animateTransform
+                               begin="scrollUpSvg.click + 0.3s"
+                               attributeName="transform"
+                               type="translate"
+                               values="0 0; 0 -2.5; 0 -2.5; 0 0"
+                               fill="freeze"
+                               dur="0.7s"
+                            >
+                        </path>
+                       
+                        <animate
+                            begin="scrollUpSvg.click"
+                            href="#scrollUpSvgCircle"
+                            attributeName="stroke"
+                            values="#C2CFE0; #53C6F6; #53C6F6; #C2CFE0"
+                            keyTimes="0; 0.25; 0.75; 1"
+                            fill="freeze"
+                            dur="1.5s"
+                        />
+                    </svg>
+
 
                 </div>
-
 
                 <div class="svg-anim-not-ok">              
         
